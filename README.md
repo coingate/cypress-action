@@ -19,7 +19,7 @@ jobs:
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           gcloud-auth: ${{ secrets.GCLOUD_AUTH }}
-          bucket-name: "tests-data-eoiurf"
+          bucket-name: "tests-data-eoiurg"
           slack-token: ${{ secrets.SLACK_TOKEN }}
           slack-channel: CBH555555
 ```
