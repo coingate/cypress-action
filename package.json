@@ -1,0 +1,29 @@
+{
+  "name": "cypress-action",
+  "version": "1.0.0",
+  "description": "",
+  "main": "dist/index.js",
+  "scripts": {
+    "build": "ncc build -o dist src/index.ts"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@actions/core": "^1.2.6",
+    "@actions/github": "^4.0.0",
+    "@actions/io": "^1.0.2",
+    "@google-cloud/storage": "^4.7.0",
+    "@slack/web-api": "^5.13.0",
+    "@zeit/ncc": "^0.20.5",
+    "cache": "github:cypress-io/github-actions-cache#8bec6cc",
+    "glob": "^7.1.6",
+    "hasha": "^5.2.2",
+    "nanoid": "^2.1.11",
+    "quote": "^0.4.0"
+  },
+  "devDependencies": {
+    "mochawesome": "^4.1.0",
+    "mochawesome-merge": "^2.1.0",
+    "mochawesome-report-generator": "^4.1.0"
+  }
+}

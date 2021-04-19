@@ -1,0 +1,30 @@
+name: 'Cypress Action'
+description: 'Runs Cypress tests and uploads test data into the bucket and notifies via Slack.'
+inputs:
+  github-token:
+    description: 'secrets.GITHUB_TOKEN'
+    required: true
+  gcloud-auth:
+    description: 'Google Cloud service account base64 encoded JSON key with Storage Object permissions.'
+    required: true
+  bucket-name:
+    description: 'Google Cloud bucket name.'
+    required: true
+  slack-token:
+    description: 'Slack Bot User OAuth Access Token "xoxb-...".'
+    required: true
+  slack-channel:
+    description: 'Slack channel for posting test status.'
+    required: true
+  env:
+    description: 'Sets Cypress environment variables.'
+    required: false
+  config:
+    description: 'Set configuration values. Separate multiple values with a comma. The values set here override any values set in your configuration file.'
+    required: false
+  tests-path:
+    description: 'Run specific tests in the path.'
+    required: false
+runs:
+  using: 'node12'
+  main: 'dist/index.js'
