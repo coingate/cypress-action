@@ -4241,7 +4241,7 @@ var packages_this = undefined;
 
 
 var homeDirectory = external_os_default().homedir();
-var lockHash = hasha_default().fromFileSync('package-lock.json');
+var lockHash = hasha_default().fromFileSync(external_path_default().join(workDir, 'package-lock.json'));
 var platformAndArch = process.platform + "-" + process.arch;
 /**
  * When running "npm install" or any other Cypress-related commands,
