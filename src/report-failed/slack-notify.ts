@@ -39,8 +39,8 @@ export default async (report, dirName) => {
 
   const makeFileURL = filePath => {
     return `${baseURL}/${filePath
-      .replace('cypress/', '')
-      .replace('cypress/', '')}`
+      .replace(`${workDir}/cypress/`, '')
+      .replace(`${workDir}/cypress/`, '')}`
   }
 
   mediaFiles.forEach(filePath => {
