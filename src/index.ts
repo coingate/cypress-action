@@ -5,7 +5,7 @@ import * as exec from '@actions/exec'
 import * as io from '@actions/io'
 import quote from 'quote'
 
-import { execCommandOptions } from './shared'
+import { execCommandOptions, workDir } from './shared'
 import npmInstall from './packages'
 import reportFailed from './report-failed'
 
@@ -48,6 +48,7 @@ const run = async () => {
   core.debug(`actor : ${context.actor}`);
   core.debug(`sha : ${context.sha}`);
   core.debug(`workflow : ${context.workflow}`);
+  core.debug(`workingDirectory : ${workDir}`);
 
   try {
     await npmInstall()
