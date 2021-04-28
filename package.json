@@ -19,9 +19,7 @@
     "glob": "^7.1.6",
     "hasha": "^5.2.2",
     "nanoid": "^2.1.11",
-    "quote": "^0.4.0"
-  },
-  "devDependencies": {
+    "quote": "^0.4.0",
     "mochawesome": "^4.1.0",
     "mochawesome-merge": "^2.1.0",
     "mochawesome-report-generator": "^4.1.0"
