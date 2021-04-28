@@ -7,10 +7,10 @@ import os from 'os'
 import hasha from 'hasha'
 import { restoreCache, saveCache } from 'cache/lib'
 
-import { debug, setFailed, execCommandOptions } from './shared'
+import { debug, setFailed, execCommandOptions, workDir } from './shared'
 
 const homeDirectory = os.homedir()
-const lockHash = hasha.fromFileSync('package-lock.json')
+const lockHash = hasha.fromFileSync(path.join(workDir, 'package-lock.json'))
 const platformAndArch = `${process.platform}-${process.arch}`
 
 /**
