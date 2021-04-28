@@ -8,7 +8,7 @@ import { execCommandOptions } from './shared'
 import npmInstall from './packages'
 import reportFailed from './report-failed'
 
-const testsPath = core.getInput('tests-path')
+const spec = core.getInput('spec')
 
 const runTests = async (options: any = {}) => {
   const opts = {
@@ -30,9 +30,9 @@ const runTests = async (options: any = {}) => {
     cmd.push(configInput)
   }
 
-  if (options.testsPath) {
+  if (options.spec) {
     cmd.push('--spec')
-    cmd.push(options.testsPath)
+    cmd.push(options.spec)
   }
 
   const npxPath = await io.which('npx', true)
@@ -51,9 +51,9 @@ const run = async () => {
   try {
     await npmInstall()
 
-    core.info(`using ${testsPath} file to test`)
+    core.info(`using ${spec} file to test`)
 
-    await runTests({ testsPath })
+    await runTests({ spec })
 
     core.debug('all done, exiting')
 
