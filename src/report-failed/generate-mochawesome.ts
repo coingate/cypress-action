@@ -10,7 +10,7 @@ const promiseGlob = util.promisify(glob)
 export default async () => {
   try {
     // Check if reports exists
-    const jsonFiles = await promiseGlob('cypress/reports/mochawesome/*.json')
+    const jsonFiles = await promiseGlob(`${workDir}/cypress/reports/mochawesome/*.json`)
 
     debug(`founded mochawsome files: ${jsonFiles.join(', ')}`)
 
@@ -38,32 +38,6 @@ export default async () => {
     })
 
     return [htmlReport[0], report]
-
-    // const npxPath = await io.which('npx', true)
-
-    // core.debug('merging mochawesome reports')
-    // await exec.exec(
-    //   quote(npxPath),
-    //   [
-    //     'mochawesome-merge',
-    //     `--rootDir`
-    //     `--reportDir ${workdir}/cypress/reports/mochawesome/ > ${workdir}/cypress/reports/mochawesome.json`,
-    //   ],
-    //   cypressCommandOptions
-    // )
-
-    // core.debug('generating mochawesome HTML')
-    // await exec.exec(
-    //   quote(npxPath),
-    //   [
-    //     'mochawesome-report-generator',
-    //     `--reportDir ${workdir}/cypress/reports/`,
-    //     '--cdn true',
-    //     '--charts true',
-    //     `${workdir}/cypress/reports/mochawesome.json`,
-    //   ],
-    //   cypressCommandOptions
-    // )
   } catch (err) {
     setFailed(err)
   }

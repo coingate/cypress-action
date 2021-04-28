@@ -4,7 +4,7 @@ import util from 'util'
 import glob from 'glob'
 import { WebClient } from '@slack/web-api'
 
-import { setFailed, debug } from '../shared'
+import { setFailed, debug, workDir } from '../shared'
 
 const promiseGlob = util.promisify(glob)
 const { context } = github
@@ -34,7 +34,7 @@ export default async (report, dirName) => {
   debug('sending Slack notification')
 
   const baseURL = `https://storage.googleapis.com/${bucketName}/${dirName}`
-  const mediaFiles = await promiseGlob('cypress/**/*.+(png|mp4)')
+  const mediaFiles = await promiseGlob(`${workDir}/cypress/**/*.+(png|mp4)`)
   const mediaURLs = []
 
   const makeFileURL = filePath => {
