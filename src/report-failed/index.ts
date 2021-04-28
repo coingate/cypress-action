@@ -1,3 +1,4 @@
+import { context } from '@actions/github'
 import * as core from '@actions/core'
 import { Storage } from '@google-cloud/storage'
 import nanoid from 'nanoid'
@@ -21,13 +22,12 @@ export default async () => {
       return
     }
 
+    const jobName = slugify(context.action)
     const date = new Date()
+    const isoDate = `${date.getUTCFullYear()}-${date.getUTCMonth() + 1}-${date.getUTCDay() + 1}`
+    const randomID = nanoid(10)
 
-    const dirName = `${date.getUTCFullYear()}${date.getUTCMonth() +
-      1}${date.getUTCDay() +
-      1}${date.getUTCHours()}${date.getUTCMinutes()}${date.getUTCSeconds()}UTC-${nanoid(
-      10
-    )}`
+    const dirName = `${jobName}/${isoDate}/${randomID}`
 
     await uploadToGCloud(dirName)
 
@@ -116,4 +116,13 @@ const uploadFiles = async (storage, fileList, pathDirName, dirName) => {
     fileList.length - resp.filter((r: any) => r.status instanceof Error).length
 
   debug(`${successfulUploads} files uploaded to ${bucketName} successfully.`)
+}
+
+const slugify = (text: string) => {
+  return text.toString().toLowerCase()
+    .replace(/\s+/g, '-')           // Replace spaces with -
+    .replace(/[^\w\-]+/g, '')       // Remove all non-word chars
+    .replace(/\-\-+/g, '-')         // Replace multiple - with single -
+    .replace(/^-+/, '')             // Trim - from start of text
+    .replace(/-+$/, '');            // Trim - from end of text
 }
