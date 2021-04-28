@@ -23,8 +23,7 @@ export default async () => {
     }
 
     const jobName = slugify(context.action)
-    const date = new Date()
-    const isoDate = `${date.getUTCFullYear()}-${date.getUTCMonth() + 1}-${date.getUTCDay() + 1}`
+    const isoDate = new Date().toISOString().split('T')[0]
     const randomID = nanoid(10)
 
     const dirName = `${jobName}/${isoDate}/${randomID}`
