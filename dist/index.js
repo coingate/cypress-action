@@ -4430,7 +4430,7 @@ var promiseGlob = external_util_default().promisify(glob_default.a);
         switch (_a.label) {
             case 0:
                 _a.trys.push([0, 4, , 5]);
-                return [4 /*yield*/, promiseGlob('cypress/reports/mochawesome/*.json')];
+                return [4 /*yield*/, promiseGlob(workDir + "/cypress/reports/mochawesome/*.json")];
             case 1:
                 jsonFiles = _a.sent();
                 debug("founded mochawsome files: " + jsonFiles.join(', '));
@@ -4455,31 +4455,7 @@ var promiseGlob = external_util_default().promisify(glob_default.a);
                     })];
             case 3:
                 htmlReport = _a.sent();
-                return [2 /*return*/, [htmlReport[0], report]
-                    // const npxPath = await io.which('npx', true)
-                    // core.debug('merging mochawesome reports')
-                    // await exec.exec(
-                    //   quote(npxPath),
-                    //   [
-                    //     'mochawesome-merge',
-                    //     `--rootDir`
-                    //     `--reportDir ${workdir}/cypress/reports/mochawesome/ > ${workdir}/cypress/reports/mochawesome.json`,
-                    //   ],
-                    //   cypressCommandOptions
-                    // )
-                    // core.debug('generating mochawesome HTML')
-                    // await exec.exec(
-                    //   quote(npxPath),
-                    //   [
-                    //     'mochawesome-report-generator',
-                    //     `--reportDir ${workdir}/cypress/reports/`,
-                    //     '--cdn true',
-                    //     '--charts true',
-                    //     `${workdir}/cypress/reports/mochawesome.json`,
-                    //   ],
-                    //   cypressCommandOptions
-                    // )
-                ];
+                return [2 /*return*/, [htmlReport[0], report]];
             case 4:
                 err_1 = _a.sent();
                 setFailed(err_1);
@@ -4560,7 +4536,7 @@ if (!conversationId) {
             case 0:
                 debug('sending Slack notification');
                 baseURL = "https://storage.googleapis.com/" + bucketName + "/" + dirName;
-                return [4 /*yield*/, slack_notify_promiseGlob('cypress/**/*.+(png|mp4)')];
+                return [4 /*yield*/, slack_notify_promiseGlob(workDir + "/cypress/**/*.+(png|mp4)")];
             case 1:
                 mediaFiles = _a.sent();
                 mediaURLs = [];
