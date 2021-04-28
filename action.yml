@@ -28,6 +28,9 @@ inputs:
   spec:
     description: 'Run specific tests in the path.'
     required: false
+  working-directory:
+    description: 'Working directory containing Cypress folder.'
+    required: false
 runs:
   using: 'node12'
   main: 'dist/index.js'

@@ -1,8 +1,8 @@
+import path from 'path'
 import { context } from '@actions/github'
 import * as core from '@actions/core'
 import { Storage } from '@google-cloud/storage'
 import nanoid from 'nanoid'
-import path from 'path'
 import fs from 'fs'
 
 import { workDir, debug, setFailed } from '../shared'

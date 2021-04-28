@@ -1,6 +1,9 @@
+import path from 'path'
 import * as core from '@actions/core'
 
-export const workDir = process.env.GITHUB_WORKSPACE
+export const workDir = core.getInput('working-directory')
+  ? path.resolve(core.getInput('working-directory'))
+  : process.cwd()
 
 export const setFailed = (error: string | Error) => {
   core.setFailed(error)
