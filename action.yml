@@ -16,6 +16,9 @@ inputs:
   slack-channel:
     description: 'Slack channel for posting test status.'
     required: true
+  slack-mention:
+    description: 'If specified will add slack mention to this group/person.'
+    required: false
   env:
     description: 'Sets Cypress environment variables.'
     required: false

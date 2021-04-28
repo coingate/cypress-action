@@ -16,6 +16,7 @@ const token = core.getInput('slack-token')
 const conversationId = core.getInput('slack-channel')
 const config = core.getInput('config')
 const bucketName = core.getInput('bucket-name')
+const slackMention = core.getInput('slack-mention')
 
 const octokit = github.getOctokit(githubToken);
 
@@ -149,7 +150,7 @@ export default async (report, dirName) => {
     elements: [
       {
         type: 'mrkdwn',
-        text: `Hey, @devs, check it out! <${baseURL}/mochawesome.html|Full Report>. Run can be found <https://github.com/${context.repo.owner}/${context.repo.repo}/runs/${checkRunID}?check_suite_focus=true|here>`,
+        text: `Hey, ${slackMention ? slackMention + ', ' : ''}check it out! <${baseURL}/mochawesome.html|Full Report>. Run can be found <https://github.com/${context.repo.owner}/${context.repo.repo}/runs/${checkRunID}?check_suite_focus=true|here>`,
       },
     ],
   })
