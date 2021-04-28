@@ -4773,10 +4773,11 @@ var report_failed_this = undefined;
 
 
 
+
 var report_failed_bucketName = Object(core.getInput)('bucket-name');
 var gcloudAuth = Object(core.getInput)('gcloud-auth');
 /* harmony default export */ var report_failed = (function () { return report_failed_awaiter(report_failed_this, void 0, void 0, function () {
-    var _a, htmlReportFilePath, jsonReport, date, dirName, err_1;
+    var _a, htmlReportFilePath, jsonReport, jobName, date, isoDate, randomID, dirName, err_1;
     return report_failed_generator(this, function (_b) {
         switch (_b.label) {
             case 0:
@@ -4790,10 +4791,11 @@ var gcloudAuth = Object(core.getInput)('gcloud-auth');
                 if (jsonReport == null) {
                     return [2 /*return*/];
                 }
+                jobName = slugify(github.context.action);
                 date = new Date();
-                dirName = "" + date.getUTCFullYear() + (date.getUTCMonth() +
-                    1) + (date.getUTCDay() +
-                    1) + date.getUTCHours() + date.getUTCMinutes() + date.getUTCSeconds() + "UTC-" + nanoid_default()(10);
+                isoDate = date.getUTCFullYear() + "-" + (date.getUTCMonth() + 1) + "-" + (date.getUTCDay() + 1);
+                randomID = nanoid_default()(10);
+                dirName = jobName + "/" + isoDate + "/" + randomID;
                 return [4 /*yield*/, uploadToGCloud(dirName)];
             case 3:
                 _b.sent();
@@ -4942,6 +4944,14 @@ var uploadFiles = function (storage, fileList, pathDirName, dirName) { return re
         }
     });
 }); };
+var slugify = function (text) {
+    return text.toString().toLowerCase()
+        .replace(/\s+/g, '-') // Replace spaces with -
+        .replace(/[^\w\-]+/g, '') // Remove all non-word chars
+        .replace(/\-\-+/g, '-') // Replace multiple - with single -
+        .replace(/^-+/, '') // Trim - from start of text
+        .replace(/-+$/, ''); // Trim - from end of text
+};
 
 // CONCATENATED MODULE: ./src/index.ts
 var __assign = (undefined && undefined.__assign) || function () {
