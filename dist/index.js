@@ -4161,9 +4161,16 @@ var io = __webpack_require__(1);
 var quote = __webpack_require__(531);
 var quote_default = /*#__PURE__*/__webpack_require__.n(quote);
 
+// EXTERNAL MODULE: external "path"
+var external_path_ = __webpack_require__(622);
+var external_path_default = /*#__PURE__*/__webpack_require__.n(external_path_);
+
 // CONCATENATED MODULE: ./src/shared.ts
 
-var workDir = process.env.GITHUB_WORKSPACE;
+
+var workDir = Object(core.getInput)('working-directory')
+    ? external_path_default().resolve(Object(core.getInput)('working-directory'))
+    : process.cwd();
 var setFailed = function (error) {
     Object(core.setFailed)(error);
     process.exit(1);
@@ -4175,10 +4182,6 @@ var execCommandOptions = {
     cwd: workDir,
     windowsVerbatimArguments: false,
 };
-
-// EXTERNAL MODULE: external "path"
-var external_path_ = __webpack_require__(622);
-var external_path_default = /*#__PURE__*/__webpack_require__.n(external_path_);
 
 // EXTERNAL MODULE: external "os"
 var external_os_ = __webpack_require__(87);
