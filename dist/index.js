@@ -4541,6 +4541,7 @@ var token = Object(core.getInput)('slack-token');
 var conversationId = Object(core.getInput)('slack-channel');
 var config = Object(core.getInput)('config');
 var bucketName = Object(core.getInput)('bucket-name');
+var slackMention = Object(core.getInput)('slack-mention');
 var octokit = Object(github.getOctokit)(githubToken);
 var web = new dist.WebClient(token);
 if (!token) {
@@ -4653,7 +4654,7 @@ if (!conversationId) {
                     elements: [
                         {
                             type: 'mrkdwn',
-                            text: "Hey, @devs, check it out! <" + baseURL + "/mochawesome.html|Full Report>. Run can be found <https://github.com/" + context.repo.owner + "/" + context.repo.repo + "/runs/" + checkRunID + "?check_suite_focus=true|here>",
+                            text: "Hey, " + (slackMention ? slackMention + ', ' : '') + "check it out! <" + baseURL + "/mochawesome.html|Full Report>. Run can be found <https://github.com/" + context.repo.owner + "/" + context.repo.repo + "/runs/" + checkRunID + "?check_suite_focus=true|here>",
                         },
                     ],
                 });
@@ -5009,7 +5010,7 @@ var src_this = undefined;
 
 
 
-var testsPath = Object(core.getInput)('tests-path');
+var spec = Object(core.getInput)('spec');
 var runTests = function (options) {
     if (options === void 0) { options = {}; }
     return src_awaiter(src_this, void 0, void 0, function () {
@@ -5031,9 +5032,9 @@ var runTests = function (options) {
                         cmd.push('--config');
                         cmd.push(configInput);
                     }
-                    if (options.testsPath) {
+                    if (options.spec) {
                         cmd.push('--spec');
-                        cmd.push(options.testsPath);
+                        cmd.push(options.spec);
                     }
                     return [4 /*yield*/, Object(io.which)('npx', true)];
                 case 1:
@@ -5063,8 +5064,8 @@ var run = function () { return src_awaiter(src_this, void 0, void 0, function ()
                 return [4 /*yield*/, src_packages()];
             case 2:
                 _a.sent();
-                Object(core.info)("using " + testsPath + " file to test");
-                return [4 /*yield*/, runTests({ testsPath: testsPath })];
+                Object(core.info)("using " + spec + " file to test");
+                return [4 /*yield*/, runTests({ spec: spec })];
             case 3:
                 _a.sent();
                 Object(core.debug)('all done, exiting');
