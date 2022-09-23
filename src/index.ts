@@ -15,7 +15,9 @@ const runTests = async (options: any = {}) => {
   const opts = {
     ...execCommandOptions,
   }
-  const cmd = ['cypress', 'run']
+
+  const cypressApiUrl = 'CYPRESS_API_URL="http://cg-cypress-sandbox-200193365.eu-central-1.elb.amazonaws.com:8080"'
+  const cmd = ['cy2 run --browser chrome --parallel --record --key merged --ci-build-id "$GITHUB_SHA | $GITHUB_REF_NAME | ${{ needs.current-date.outputs.current-date }}"']
 
   const envInput = core.getInput('env')
   if (envInput) {
@@ -38,7 +40,7 @@ const runTests = async (options: any = {}) => {
 
   const npxPath = await io.which('npx', true)
 
-  await exec.exec(quote(npxPath), cmd, opts)
+  await exec.exec(cypressApiUrl, quote(npxPath), cmd, opts)
 }
 
 const run = async () => {
