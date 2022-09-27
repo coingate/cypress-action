@@ -10,6 +10,7 @@ import npmInstall from './packages'
 import reportFailed from './report-failed'
 
 const spec = core.getInput('spec')
+const browser = core.getInput('browser')
 
 const runTests = async (options: any = {}) => {
   const opts = {
@@ -36,6 +37,11 @@ const runTests = async (options: any = {}) => {
     cmd.push(options.spec)
   }
 
+  if (options.browser) {
+    cmd.push('--browser')
+    cmd.push(options.browser)
+  }
+
   const npxPath = await io.which('npx', true)
 
   await exec.exec(quote(npxPath), cmd, opts)
@@ -55,7 +61,7 @@ const run = async () => {
 
     core.info(`using ${spec} file to test`)
 
-    await runTests({ spec })
+    await runTests({ spec, browser })
 
     core.debug('all done, exiting')
 
