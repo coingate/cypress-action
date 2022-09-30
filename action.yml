@@ -28,6 +28,9 @@ inputs:
   spec:
     description: 'Run specific tests in the path.'
     required: false
+  browser:
+    description: 'Run tests on a specific browser.'
+    required: false
   working-directory:
     description: 'Working directory containing Cypress folder.'
     required: false
