@@ -103433,7 +103433,7 @@ var spec = core.getInput('spec');
 var runTests = function (options) {
     if (options === void 0) { options = {}; }
     return src_awaiter(void 0, void 0, void 0, function () {
-        var opts, cmd, envInput, configInput, browser, npxPath;
+        var opts, cmd, envInput, configInput, browserInput, npxPath;
         return src_generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
@@ -103451,10 +103451,10 @@ var runTests = function (options) {
                         cmd.push('--config');
                         cmd.push(configInput);
                     }
-                    browser = core.getInput('browser');
-                    if (browser) {
+                    browserInput = core.getInput('browser');
+                    if (browserInput) {
                         cmd.push('--browser');
-                        cmd.push(options.browser);
+                        cmd.push(browserInput);
                     }
                     if (options.spec) {
                         cmd.push('--spec');
