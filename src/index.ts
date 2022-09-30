@@ -33,7 +33,7 @@ const runTests = async (options: any = {}) => {
   const browser = core.getInput('browser')
   if (browser) {
     cmd.push('--browser')
-    cmd.push(options.browser)
+    cmd.push(browser)
   }
 
   if (options.spec) {
