@@ -30,10 +30,10 @@ const runTests = async (options: any = {}) => {
     cmd.push(configInput)
   }
 
-  const browser = core.getInput('browser')
-  if (browser) {
+  const browserInput = core.getInput('browser')
+  if (browserInput) {
     cmd.push('--browser')
-    cmd.push(browser)
+    cmd.push(browserInput)
   }
 
   if (options.spec) {
