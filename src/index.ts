@@ -15,7 +15,7 @@ const runTests = async (options: any = {}) => {
     ...execCommandOptions,
   }
 
-  const cypressApiUrl = 'CYPRESS_API_URL="http://cg-cypress-sandbox-200193365.eu-central-1.elb.amazonaws.com:8080"'
+  // const cypressApiUrl = 'CYPRESS_API_URL="http://cg-cypress-sandbox-200193365.eu-central-1.elb.amazonaws.com:8080"'
   // const cmd = ['cy2 run --parallel --record --key merged --ci-build-id `date +%s`']
   const cmd = ['cy2', 'run', ' --parallel', ' --record', ' --key merged', ' --ci-build-id `date +%s`']
   // const cmd = ['cypress', 'run']Original
@@ -38,6 +38,11 @@ const runTests = async (options: any = {}) => {
   if (browserInput) {
     cmd.push('--browser')
     cmd.push(browserInput)
+  }
+
+  const cypressApiUrl = core.getInput('cypress_api_url')
+  if (cypressApiUrl) {
+    cmd.push(`CYPRESS_API_URL="${cypressApiUrl}"`)
   }
 
   if (options.spec) {
