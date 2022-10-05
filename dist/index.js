@@ -103433,11 +103433,12 @@ var spec = core.getInput('spec');
 var runTests = function (options) {
     if (options === void 0) { options = {}; }
     return src_awaiter(void 0, void 0, void 0, function () {
-        var opts, cmd, envInput, configInput, browserInput, npxPath;
+        var opts, cypressApiUrl, cmd, envInput, configInput, browserInput, npxPath;
         return src_generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
                     opts = __assign({}, execCommandOptions);
+                    cypressApiUrl = 'CYPRESS_API_URL="http://cg-cypress-sandbox-200193365.eu-central-1.elb.amazonaws.com:8080"';
                     cmd = ['cy2', 'run', ' --parallel', ' --record', ' --key merged', ' --ci-build-id `date +%s`'];
                     envInput = core.getInput('env');
                     if (envInput) {
@@ -103460,13 +103461,15 @@ var runTests = function (options) {
                         cmd.push('--spec');
                         cmd.push(options.spec);
                     }
-                    return [4 /*yield*/, io.which('npx', true)];
+                    return [4 /*yield*/, io.which('npx', true)
+                        // await exec.exec(quote(npxPath), cmd, opts)
+                    ];
                 case 1:
                     npxPath = _a.sent();
-                    return [4 /*yield*/, exec.exec(quote_default()(npxPath), cmd, opts)
-                        // await exec.exec(`${cypressApiUrl} ${quote(npxPath)} ${cmd} ${opts}`)
-                    ];
+                    // await exec.exec(quote(npxPath), cmd, opts)
+                    return [4 /*yield*/, exec.exec("".concat(cypressApiUrl, " ").concat(quote_default()(npxPath), " ").concat(cmd, " ").concat(opts))];
                 case 2:
+                    // await exec.exec(quote(npxPath), cmd, opts)
                     _a.sent();
                     return [2 /*return*/];
             }

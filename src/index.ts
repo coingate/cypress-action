@@ -15,7 +15,7 @@ const runTests = async (options: any = {}) => {
     ...execCommandOptions,
   }
 
-  // const cypressApiUrl = 'CYPRESS_API_URL="http://cg-cypress-sandbox-200193365.eu-central-1.elb.amazonaws.com:8080"'
+  const cypressApiUrl = 'CYPRESS_API_URL="http://cg-cypress-sandbox-200193365.eu-central-1.elb.amazonaws.com:8080"'
   // const cmd = ['cy2 run --parallel --record --key merged --ci-build-id `date +%s`']
   const cmd = ['cy2', 'run', ' --parallel', ' --record', ' --key merged', ' --ci-build-id `date +%s`']
   // const cmd = ['cypress', 'run']Original
@@ -47,8 +47,8 @@ const runTests = async (options: any = {}) => {
 
   const npxPath = await io.which('npx', true)
   
-  await exec.exec(quote(npxPath), cmd, opts)
-  // await exec.exec(`${cypressApiUrl} ${quote(npxPath)} ${cmd} ${opts}`)
+  // await exec.exec(quote(npxPath), cmd, opts)
+  await exec.exec(`${cypressApiUrl} ${quote(npxPath)} ${cmd} ${opts}`)
 }
 
 const run = async () => {
