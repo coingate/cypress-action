@@ -103469,14 +103469,11 @@ var runTests = function (options) {
                     npxPath = _a.sent();
                     console.log("npxPath: ".concat(npxPath));
                     console.log("I will execute: ".concat(npxPath, " | ").concat(cmd, " | ").concat(opts));
-                    return [4 /*yield*/, exec.exec(quote_default()('export CYPRESS_API_URL="http://cg-cypress-sandbox-200193365.eu-central-1.elb.amazonaws.com:8080"'))];
-                case 2:
-                    _a.sent();
                     return [4 /*yield*/, exec.exec(quote_default()(npxPath), cmd, opts)
                         // await exec.exec(`${quote(cypressApiUrl)} ${quote(npxPath)}`, cmd, opts)
                         // await exec.exec(`${cypressApiUrl} ${quote(npxPath)} ${cmd} ${opts}`)
                     ];
-                case 3:
+                case 2:
                     _a.sent();
                     return [2 /*return*/];
             }
