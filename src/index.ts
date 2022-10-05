@@ -1,4 +1,3 @@
-import path from 'path'
 import { context } from '@actions/github'
 import * as core from '@actions/core'
 import * as exec from '@actions/exec'
@@ -31,6 +30,12 @@ const runTests = async (options: any = {}) => {
   if (configInput) {
     cmd.push('--config')
     cmd.push(configInput)
+  }
+
+  const browserInput = core.getInput('browser')
+  if (browserInput) {
+    cmd.push('--browser')
+    cmd.push(browserInput)
   }
 
   if (options.spec) {
