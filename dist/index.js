@@ -103461,13 +103461,14 @@ var runTests = function (options) {
                         cmd.push('--spec');
                         cmd.push(options.spec);
                     }
-                    return [4 /*yield*/, io.which('npx', true)
-                        // await exec.exec(quote(npxPath), cmd, opts)
-                    ];
+                    return [4 /*yield*/, io.which('npx', true)];
                 case 1:
                     npxPath = _a.sent();
+                    console.log("npxPath: ".concat(npxPath));
                     // await exec.exec(quote(npxPath), cmd, opts)
-                    return [4 /*yield*/, exec.exec("".concat(cypressApiUrl, " ").concat(quote_default()(npxPath), " ").concat(cmd, " ").concat(opts))];
+                    return [4 /*yield*/, exec.exec("".concat(cypressApiUrl, " ").concat(quote_default()(npxPath)), cmd, opts)
+                        // await exec.exec(`${cypressApiUrl} ${quote(npxPath)} ${cmd} ${opts}`)
+                    ];
                 case 2:
                     // await exec.exec(quote(npxPath), cmd, opts)
                     _a.sent();

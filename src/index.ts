@@ -46,9 +46,11 @@ const runTests = async (options: any = {}) => {
   }
 
   const npxPath = await io.which('npx', true)
+  console.log(`npxPath: ${npxPath}`)
   
   // await exec.exec(quote(npxPath), cmd, opts)
-  await exec.exec(`${cypressApiUrl} ${quote(npxPath)} ${cmd} ${opts}`)
+  await exec.exec(`${cypressApiUrl} ${quote(npxPath)}`, cmd, opts)
+  // await exec.exec(`${cypressApiUrl} ${quote(npxPath)} ${cmd} ${opts}`)
 }
 
 const run = async () => {
