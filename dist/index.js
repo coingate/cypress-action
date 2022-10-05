@@ -103465,12 +103465,11 @@ var runTests = function (options) {
                 case 1:
                     npxPath = _a.sent();
                     console.log("npxPath: ".concat(npxPath));
-                    // await exec.exec(quote(npxPath), cmd, opts)
-                    return [4 /*yield*/, exec.exec("".concat(quote_default()(cypressApiUrl), " ").concat(quote_default()(npxPath)), cmd, opts)
+                    return [4 /*yield*/, exec.exec(quote_default()(npxPath), cmd, opts)
+                        // await exec.exec(`${quote(cypressApiUrl)} ${quote(npxPath)}`, cmd, opts)
                         // await exec.exec(`${cypressApiUrl} ${quote(npxPath)} ${cmd} ${opts}`)
                     ];
                 case 2:
-                    // await exec.exec(quote(npxPath), cmd, opts)
                     _a.sent();
                     return [2 /*return*/];
             }
