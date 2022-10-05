@@ -54,7 +54,7 @@ const runTests = async (options: any = {}) => {
   console.log(`npxPath: ${npxPath}`)
   console.log(`I will execute: ${npxPath} | ${cmd} | ${opts}`)
   
-  await exec.exec('export CYPRESS_API_URL="http://cg-cypress-sandbox-200193365.eu-central-1.elb.amazonaws.com:8080"')
+  await exec.exec(quote('export CYPRESS_API_URL="http://cg-cypress-sandbox-200193365.eu-central-1.elb.amazonaws.com:8080"'))
   await exec.exec(quote(npxPath), cmd, opts)
   // await exec.exec(`${quote(cypressApiUrl)} ${quote(npxPath)}`, cmd, opts)
   // await exec.exec(`${cypressApiUrl} ${quote(npxPath)} ${cmd} ${opts}`)
