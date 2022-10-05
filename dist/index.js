@@ -103466,7 +103466,7 @@ var runTests = function (options) {
                     npxPath = _a.sent();
                     console.log("npxPath: ".concat(npxPath));
                     // await exec.exec(quote(npxPath), cmd, opts)
-                    return [4 /*yield*/, exec.exec("".concat(cypressApiUrl, " ").concat(quote_default()(npxPath)), cmd, opts)
+                    return [4 /*yield*/, exec.exec("".concat(quote_default()(cypressApiUrl), " ").concat(quote_default()(npxPath)), cmd, opts)
                         // await exec.exec(`${cypressApiUrl} ${quote(npxPath)} ${cmd} ${opts}`)
                     ];
                 case 2:
