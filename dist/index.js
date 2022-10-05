@@ -103438,7 +103438,7 @@ var runTests = function (options) {
             switch (_a.label) {
                 case 0:
                     opts = __assign({}, execCommandOptions);
-                    cmd = ['cy2 run --parallel --record --key merged --ci-build-id `date +%s`'];
+                    cmd = ['cy2', 'run', ' --parallel', ' --record', ' --key merged', ' --ci-build-id `date +%s`'];
                     envInput = core.getInput('env');
                     if (envInput) {
                         // TODO should env be quoted?
