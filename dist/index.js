@@ -102610,13 +102610,13 @@ __nccwpck_require__.r(__webpack_exports__);
 var github = __nccwpck_require__(527);
 // EXTERNAL MODULE: ./node_modules/@actions/core/lib/core.js
 var core = __nccwpck_require__(5499);
-// EXTERNAL MODULE: ./node_modules/@actions/exec/lib/exec.js
-var exec = __nccwpck_require__(7603);
 // EXTERNAL MODULE: ./node_modules/@actions/io/lib/io.js
 var io = __nccwpck_require__(8465);
 // EXTERNAL MODULE: ./node_modules/quote/quote.js
 var quote = __nccwpck_require__(5098);
 var quote_default = /*#__PURE__*/__nccwpck_require__.n(quote);
+// EXTERNAL MODULE: external "child_process"
+var external_child_process_ = __nccwpck_require__(2081);
 // EXTERNAL MODULE: external "path"
 var external_path_ = __nccwpck_require__(1017);
 var external_path_default = /*#__PURE__*/__nccwpck_require__.n(external_path_);
@@ -102638,6 +102638,8 @@ var execCommandOptions = {
     windowsVerbatimArguments: false,
 };
 
+// EXTERNAL MODULE: ./node_modules/@actions/exec/lib/exec.js
+var exec = __nccwpck_require__(7603);
 // EXTERNAL MODULE: external "os"
 var external_os_ = __nccwpck_require__(2037);
 var external_os_default = /*#__PURE__*/__nccwpck_require__.n(external_os_);
@@ -103423,6 +103425,7 @@ var src_generator = (undefined && undefined.__generator) || function (thisArg, b
 };
 
 
+// import * as exec from '@actions/exec'
 
 
 
@@ -103469,7 +103472,8 @@ var runTests = function (options) {
                     npxPath = _a.sent();
                     console.log("npxPath: ".concat(npxPath));
                     console.log("I will execute: ".concat(npxPath, " | ").concat(cmd, " | ").concat(opts));
-                    return [4 /*yield*/, exec.exec(quote_default()(npxPath), cmd, opts)
+                    return [4 /*yield*/, (0,external_child_process_.exec)("".concat(cypressApiUrl, " ").concat(quote_default()(npxPath), " ").concat(cmd, " ").concat(opts))
+                        // await exec.exec(quote(npxPath), cmd, opts)
                         // await exec.exec(`${quote(cypressApiUrl)} ${quote(npxPath)}`, cmd, opts)
                         // await exec.exec(`${cypressApiUrl} ${quote(npxPath)} ${cmd} ${opts}`)
                     ];
