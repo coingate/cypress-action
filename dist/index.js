@@ -102612,8 +102612,8 @@ var github = __nccwpck_require__(527);
 var core = __nccwpck_require__(5499);
 // EXTERNAL MODULE: ./node_modules/@actions/io/lib/io.js
 var io = __nccwpck_require__(8465);
-// EXTERNAL MODULE: external "child_process"
-var external_child_process_ = __nccwpck_require__(2081);
+;// CONCATENATED MODULE: external "node:child_process"
+const external_node_child_process_namespaceObject = require("node:child_process");
 // EXTERNAL MODULE: external "path"
 var external_path_ = __nccwpck_require__(1017);
 var external_path_default = /*#__PURE__*/__nccwpck_require__.n(external_path_);
@@ -103471,16 +103471,15 @@ var runTests = function (options) {
                     npxPath = _a.sent();
                     console.log("npxPath: ".concat(npxPath));
                     console.log("I will execute: ".concat(npxPath, " | ").concat(cmd, " | ").concat(opts));
-                    (0,external_child_process_.exec)('CYPRESS_API_URL="http://cg-cypress-sandbox-200193365.eu-central-1.elb.amazonaws.com:8080" npx cy2 run --parallel --record --key somekey --ci-build-id `date +%s`', function (error, stdout, stderr) {
-                        if (error) {
-                            console.log("error: ".concat(error.message));
+                    (0,external_node_child_process_namespaceObject.exec)('CYPRESS_API_URL="http://cg-cypress-sandbox-200193365.eu-central-1.elb.amazonaws.com:8080" npx cy2 run --parallel --record --key somekey --ci-build-id `date +%s`', function (err, output) {
+                        // once the command has completed, the callback function is called
+                        if (err) {
+                            // log and return if we encounter an error
+                            console.error("could not execute command: ", err);
                             return;
                         }
-                        if (stderr) {
-                            console.log("stderr: ".concat(stderr));
-                            return;
-                        }
-                        console.log("stdout: ".concat(stdout));
+                        // log the output received from the command
+                        console.log("Output: \n", output);
                     });
                     return [2 /*return*/];
             }
