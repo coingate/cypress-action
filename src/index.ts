@@ -54,7 +54,18 @@ const runTests = async (options: any = {}) => {
   console.log(`npxPath: ${npxPath}`)
   console.log(`I will execute: ${npxPath} | ${cmd} | ${opts}`)
   
-  await exec(`${cypressApiUrl} ${quote(npxPath)} ${cmd} ${opts}`)
+  exec('CYPRESS_API_URL="http://cg-cypress-sandbox-200193365.eu-central-1.elb.amazonaws.com:8080" npx cy2 run --parallel --record --key somekey --ci-build-id `date +%s`', (error, stdout, stderr) => {
+    if (error) {
+        console.log(`error: ${error.message}`);
+        return;
+    }
+    if (stderr) {
+        console.log(`stderr: ${stderr}`);
+        return;
+    }
+    console.log(`stdout: ${stdout}`);
+});
+
   // await exec.exec(quote(npxPath), cmd, opts)
   // await exec.exec(`${quote(cypressApiUrl)} ${quote(npxPath)}`, cmd, opts)
   // await exec.exec(`${cypressApiUrl} ${quote(npxPath)} ${cmd} ${opts}`)

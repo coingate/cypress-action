@@ -102612,9 +102612,6 @@ var github = __nccwpck_require__(527);
 var core = __nccwpck_require__(5499);
 // EXTERNAL MODULE: ./node_modules/@actions/io/lib/io.js
 var io = __nccwpck_require__(8465);
-// EXTERNAL MODULE: ./node_modules/quote/quote.js
-var quote = __nccwpck_require__(5098);
-var quote_default = /*#__PURE__*/__nccwpck_require__.n(quote);
 // EXTERNAL MODULE: external "child_process"
 var external_child_process_ = __nccwpck_require__(2081);
 // EXTERNAL MODULE: external "path"
@@ -102640,6 +102637,9 @@ var execCommandOptions = {
 
 // EXTERNAL MODULE: ./node_modules/@actions/exec/lib/exec.js
 var exec = __nccwpck_require__(7603);
+// EXTERNAL MODULE: ./node_modules/quote/quote.js
+var quote = __nccwpck_require__(5098);
+var quote_default = /*#__PURE__*/__nccwpck_require__.n(quote);
 // EXTERNAL MODULE: external "os"
 var external_os_ = __nccwpck_require__(2037);
 var external_os_default = /*#__PURE__*/__nccwpck_require__.n(external_os_);
@@ -103431,7 +103431,6 @@ var src_generator = (undefined && undefined.__generator) || function (thisArg, b
 
 
 
-
 var spec = core.getInput('spec');
 var runTests = function (options) {
     if (options === void 0) { options = {}; }
@@ -103472,13 +103471,17 @@ var runTests = function (options) {
                     npxPath = _a.sent();
                     console.log("npxPath: ".concat(npxPath));
                     console.log("I will execute: ".concat(npxPath, " | ").concat(cmd, " | ").concat(opts));
-                    return [4 /*yield*/, (0,external_child_process_.exec)("".concat(cypressApiUrl, " ").concat(quote_default()(npxPath), " ").concat(cmd, " ").concat(opts))
-                        // await exec.exec(quote(npxPath), cmd, opts)
-                        // await exec.exec(`${quote(cypressApiUrl)} ${quote(npxPath)}`, cmd, opts)
-                        // await exec.exec(`${cypressApiUrl} ${quote(npxPath)} ${cmd} ${opts}`)
-                    ];
-                case 2:
-                    _a.sent();
+                    (0,external_child_process_.exec)('CYPRESS_API_URL="http://cg-cypress-sandbox-200193365.eu-central-1.elb.amazonaws.com:8080" npx cy2 run --parallel --record --key somekey --ci-build-id `date +%s`', function (error, stdout, stderr) {
+                        if (error) {
+                            console.log("error: ".concat(error.message));
+                            return;
+                        }
+                        if (stderr) {
+                            console.log("stderr: ".concat(stderr));
+                            return;
+                        }
+                        console.log("stdout: ".concat(stdout));
+                    });
                     return [2 /*return*/];
             }
         });
