@@ -54,9 +54,9 @@ const runTests = async (options: any = {}) => {
   console.log(`npxPath: ${npxPath}`)
   console.log(`cy2Path: ${cy2Path}`)
 
-  await exec.exec(quote(npxPath), cmd, opts)
+  // await exec.exec(quote(npxPath), cmd, opts)
   // await exec.exec(`${quote(cypressApiUrl)} ${quote(npxPath)}`, cmd, opts)
-  // await exec.exec(`${cypressApiUrl} ${quote(npxPath)} ${cmd} ${opts}`)
+  await exec.exec('npx cy2 run --record --key XXX --parallel --ci-build-id `date +%s`')
 }
 
 const run = async () => {
