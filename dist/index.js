@@ -103432,7 +103432,7 @@ var spec = core.getInput('spec');
 var runTests = function (options) {
     if (options === void 0) { options = {}; }
     return src_awaiter(void 0, void 0, void 0, function () {
-        var opts, cmd, envInput, configInput, browserInput, cypressApiUrl, npxPath;
+        var opts, cmd, envInput, configInput, browserInput, cypressApiUrl, npxPath, currentDate;
         return src_generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
@@ -103467,14 +103467,10 @@ var runTests = function (options) {
                 case 1:
                     npxPath = _a.sent();
                     console.log("npxPath: ".concat(npxPath));
-                    // await exec.exec(quote(npxPath), cmd, opts)
-                    // await exec.exec(`${quote(cypressApiUrl)} ${quote(npxPath)}`, cmd, opts)
-                    // await exec.exec(`npx cy2 run --spec cypress/e2e/payment-invoice/bitcoin.cy.ts --parallel --record --key merged --ci-build-id \`date +%s\``)
-                    return [4 /*yield*/, exec.exec("npx cy2 run ".concat(cmd[1], " --parallel --record --key merged --ci-build-id `date +%s`"))];
+                    console.log("cmd[x]: ".concat(cmd[9]));
+                    currentDate = "date +%s";
+                    return [4 /*yield*/, exec.exec("npx cy2 run ".concat(cmd[8], " --parallel --record --key merged --ci-build-id ").concat(currentDate))];
                 case 2:
-                    // await exec.exec(quote(npxPath), cmd, opts)
-                    // await exec.exec(`${quote(cypressApiUrl)} ${quote(npxPath)}`, cmd, opts)
-                    // await exec.exec(`npx cy2 run --spec cypress/e2e/payment-invoice/bitcoin.cy.ts --parallel --record --key merged --ci-build-id \`date +%s\``)
                     _a.sent();
                     return [2 /*return*/];
             }

@@ -53,10 +53,14 @@ const runTests = async (options: any = {}) => {
   const npxPath = await io.which('npx', true)
   console.log(`npxPath: ${npxPath}`)
 
+  console.log(`cmd[x]: ${cmd[9]}`)
+
   // await exec.exec(quote(npxPath), cmd, opts)
   // await exec.exec(`${quote(cypressApiUrl)} ${quote(npxPath)}`, cmd, opts)
   // await exec.exec(`npx cy2 run --spec cypress/e2e/payment-invoice/bitcoin.cy.ts --parallel --record --key merged --ci-build-id \`date +%s\``)
-  await exec.exec(`npx cy2 run ${cmd[1]} --parallel --record --key merged --ci-build-id \`date +%s\``)
+  const currentDate = `date +%s`
+
+  await exec.exec(`npx cy2 run ${cmd[8]} --parallel --record --key merged --ci-build-id ${currentDate}`)
 }
 
 const run = async () => {
