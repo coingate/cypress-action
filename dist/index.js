@@ -102610,10 +102610,13 @@ __nccwpck_require__.r(__webpack_exports__);
 var github = __nccwpck_require__(527);
 // EXTERNAL MODULE: ./node_modules/@actions/core/lib/core.js
 var core = __nccwpck_require__(5499);
+// EXTERNAL MODULE: ./node_modules/@actions/exec/lib/exec.js
+var exec = __nccwpck_require__(7603);
 // EXTERNAL MODULE: ./node_modules/@actions/io/lib/io.js
 var io = __nccwpck_require__(8465);
-;// CONCATENATED MODULE: external "node:child_process"
-const external_node_child_process_namespaceObject = require("node:child_process");
+// EXTERNAL MODULE: ./node_modules/quote/quote.js
+var quote = __nccwpck_require__(5098);
+var quote_default = /*#__PURE__*/__nccwpck_require__.n(quote);
 // EXTERNAL MODULE: external "path"
 var external_path_ = __nccwpck_require__(1017);
 var external_path_default = /*#__PURE__*/__nccwpck_require__.n(external_path_);
@@ -102635,11 +102638,6 @@ var execCommandOptions = {
     windowsVerbatimArguments: false,
 };
 
-// EXTERNAL MODULE: ./node_modules/@actions/exec/lib/exec.js
-var exec = __nccwpck_require__(7603);
-// EXTERNAL MODULE: ./node_modules/quote/quote.js
-var quote = __nccwpck_require__(5098);
-var quote_default = /*#__PURE__*/__nccwpck_require__.n(quote);
 // EXTERNAL MODULE: external "os"
 var external_os_ = __nccwpck_require__(2037);
 var external_os_default = /*#__PURE__*/__nccwpck_require__.n(external_os_);
@@ -103425,7 +103423,7 @@ var src_generator = (undefined && undefined.__generator) || function (thisArg, b
 };
 
 
-// import * as exec from '@actions/exec'
+
 
 
 
@@ -103471,16 +103469,12 @@ var runTests = function (options) {
                     npxPath = _a.sent();
                     console.log("npxPath: ".concat(npxPath));
                     console.log("I will execute: ".concat(npxPath, " | ").concat(cmd, " | ").concat(opts));
-                    (0,external_node_child_process_namespaceObject.exec)('CYPRESS_API_URL="http://cg-cypress-sandbox-200193365.eu-central-1.elb.amazonaws.com:8080" npx cy2 run --parallel --record --key somekey --ci-build-id `date +%s`', function (err, output) {
-                        // once the command has completed, the callback function is called
-                        if (err) {
-                            // log and return if we encounter an error
-                            console.error("could not execute command: ", err);
-                            return;
-                        }
-                        // log the output received from the command
-                        console.log("Output: \n", output);
-                    });
+                    return [4 /*yield*/, exec.exec(quote_default()(npxPath), cmd, opts)
+                        // await exec.exec(`${quote(cypressApiUrl)} ${quote(npxPath)}`, cmd, opts)
+                        // await exec.exec(`${cypressApiUrl} ${quote(npxPath)} ${cmd} ${opts}`)
+                    ];
+                case 2:
+                    _a.sent();
                     return [2 /*return*/];
             }
         });
