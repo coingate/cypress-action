@@ -103463,7 +103463,7 @@ var runTests = function (options) {
                         cmd.push(options.spec);
                     }
                     date = new Date();
-                    return [4 /*yield*/, exec.exec("npx cy2 run --parallel --record --key merged --ci-build-id ".concat(date.toString()), cmd, opts)];
+                    return [4 /*yield*/, exec.exec("npx cy2 run --parallel --record --key merged --ci-build-id \"".concat(date.toString(), "\""), cmd, opts)];
                 case 1:
                     _a.sent();
                     return [2 /*return*/];

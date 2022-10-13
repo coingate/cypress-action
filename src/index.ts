@@ -49,7 +49,7 @@ const runTests = async (options: any = {}) => {
 
   let date = new Date();
 
-  await exec.exec(`npx cy2 run --parallel --record --key merged --ci-build-id ${date.toString()}`, cmd, opts)
+  await exec.exec(`npx cy2 run --parallel --record --key merged --ci-build-id "${date.toString()}"`, cmd, opts)
 }
 
 const run = async () => {
