@@ -103432,7 +103432,7 @@ var spec = core.getInput('spec');
 var runTests = function (options) {
     if (options === void 0) { options = {}; }
     return src_awaiter(void 0, void 0, void 0, function () {
-        var opts, cmd, envInput, configInput, browserInput, cypressApiUrl, npxPath, currentDate;
+        var opts, cmd, envInput, configInput, browserInput, cypressApiUrl, npxPath, date;
         return src_generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
@@ -103468,8 +103468,8 @@ var runTests = function (options) {
                     npxPath = _a.sent();
                     console.log("npxPath: ".concat(npxPath));
                     console.log("cmd[x]: ".concat(cmd[9]));
-                    currentDate = '`date +%s`';
-                    return [4 /*yield*/, exec.exec("npx cy2 run ".concat(cmd[9], " --parallel --record --key merged --ci-build-id ").concat(currentDate))];
+                    date = new Date();
+                    return [4 /*yield*/, exec.exec("npx cy2 run --parallel --record --key merged --ci-build-id ".concat(date.toLocaleString()), cmd, opts)];
                 case 2:
                     _a.sent();
                     return [2 /*return*/];
