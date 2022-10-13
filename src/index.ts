@@ -15,9 +15,6 @@ const runTests = async (options: any = {}) => {
     ...execCommandOptions,
   }
 
-  // const cypressApiUrl = 'CYPRESS_API_URL="http://cg-cypress-sandbox-200193365.eu-central-1.elb.amazonaws.com:8080"']
-  // const cmd = ['./node_modules/cy2/bin/cy2', 'run', ' --parallel', ' --record', ' --key merged', ' --ci-build-id `date +%s`']
-  // const cmd = ['cypress', 'run']Original
   const cmd = []
 
   const envInput = core.getInput('env')
@@ -50,17 +47,9 @@ const runTests = async (options: any = {}) => {
     cmd.push(options.spec)
   }
 
-  const npxPath = await io.which('npx', true)
-  console.log(`npxPath: ${npxPath}`)
-
-  console.log(`cmd[x]: ${cmd[9]}`)
-
-  // await exec.exec(quote(npxPath), cmd, opts)
-  // await exec.exec(`${quote(cypressApiUrl)} ${quote(npxPath)}`, cmd, opts)
-  // await exec.exec(`npx cy2 run --spec cypress/e2e/payment-invoice/bitcoin.cy.ts --parallel --record --key merged --ci-build-id \`date +%s\``)
   let date = new Date();
 
-  await exec.exec(`npx cy2 run --parallel --record --key merged --ci-build-id ${date.toLocaleString()}`, cmd, opts)
+  await exec.exec(`npx cy2 run --parallel --record --key merged --ci-build-id ${date.toString()}`, cmd, opts)
 }
 
 const run = async () => {

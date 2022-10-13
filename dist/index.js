@@ -102612,8 +102612,6 @@ var github = __nccwpck_require__(527);
 var core = __nccwpck_require__(5499);
 // EXTERNAL MODULE: ./node_modules/@actions/exec/lib/exec.js
 var exec = __nccwpck_require__(7603);
-// EXTERNAL MODULE: ./node_modules/@actions/io/lib/io.js
-var io = __nccwpck_require__(8465);
 // EXTERNAL MODULE: external "path"
 var external_path_ = __nccwpck_require__(1017);
 var external_path_default = /*#__PURE__*/__nccwpck_require__.n(external_path_);
@@ -102635,6 +102633,8 @@ var execCommandOptions = {
     windowsVerbatimArguments: false,
 };
 
+// EXTERNAL MODULE: ./node_modules/@actions/io/lib/io.js
+var io = __nccwpck_require__(8465);
 // EXTERNAL MODULE: ./node_modules/quote/quote.js
 var quote = __nccwpck_require__(5098);
 var quote_default = /*#__PURE__*/__nccwpck_require__.n(quote);
@@ -103427,12 +103427,11 @@ var src_generator = (undefined && undefined.__generator) || function (thisArg, b
 
 
 
-
 var spec = core.getInput('spec');
 var runTests = function (options) {
     if (options === void 0) { options = {}; }
     return src_awaiter(void 0, void 0, void 0, function () {
-        var opts, cmd, envInput, configInput, browserInput, cypressApiUrl, npxPath, date;
+        var opts, cmd, envInput, configInput, browserInput, cypressApiUrl, date;
         return src_generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
@@ -103463,14 +103462,9 @@ var runTests = function (options) {
                         cmd.push('--spec');
                         cmd.push(options.spec);
                     }
-                    return [4 /*yield*/, io.which('npx', true)];
-                case 1:
-                    npxPath = _a.sent();
-                    console.log("npxPath: ".concat(npxPath));
-                    console.log("cmd[x]: ".concat(cmd[9]));
                     date = new Date();
-                    return [4 /*yield*/, exec.exec("npx cy2 run --parallel --record --key merged --ci-build-id ".concat(date.toLocaleString()), cmd, opts)];
-                case 2:
+                    return [4 /*yield*/, exec.exec("npx cy2 run --parallel --record --key merged --ci-build-id ".concat(date.toString()), cmd, opts)];
+                case 1:
                     _a.sent();
                     return [2 /*return*/];
             }
