@@ -102612,6 +102612,11 @@ var github = __nccwpck_require__(527);
 var core = __nccwpck_require__(5499);
 // EXTERNAL MODULE: ./node_modules/@actions/exec/lib/exec.js
 var exec = __nccwpck_require__(7603);
+// EXTERNAL MODULE: ./node_modules/@actions/io/lib/io.js
+var io = __nccwpck_require__(8465);
+// EXTERNAL MODULE: ./node_modules/quote/quote.js
+var quote = __nccwpck_require__(5098);
+var quote_default = /*#__PURE__*/__nccwpck_require__.n(quote);
 // EXTERNAL MODULE: external "path"
 var external_path_ = __nccwpck_require__(1017);
 var external_path_default = /*#__PURE__*/__nccwpck_require__.n(external_path_);
@@ -102633,11 +102638,6 @@ var execCommandOptions = {
     windowsVerbatimArguments: false,
 };
 
-// EXTERNAL MODULE: ./node_modules/@actions/io/lib/io.js
-var io = __nccwpck_require__(8465);
-// EXTERNAL MODULE: ./node_modules/quote/quote.js
-var quote = __nccwpck_require__(5098);
-var quote_default = /*#__PURE__*/__nccwpck_require__.n(quote);
 // EXTERNAL MODULE: external "os"
 var external_os_ = __nccwpck_require__(2037);
 var external_os_default = /*#__PURE__*/__nccwpck_require__.n(external_os_);
@@ -103427,16 +103427,25 @@ var src_generator = (undefined && undefined.__generator) || function (thisArg, b
 
 
 
+
+
 var spec = core.getInput('spec');
 var runTests = function (options) {
     if (options === void 0) { options = {}; }
     return src_awaiter(void 0, void 0, void 0, function () {
-        var opts, cmd, envInput, configInput, browserInput, cypressApiUrl, date;
+        var opts, cmd, useSorryCypress, envInput, configInput, browserInput, cypressApiUrl, npxPath, date;
         return src_generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
                     opts = __assign({}, execCommandOptions);
                     cmd = [];
+                    useSorryCypress = false;
+                    if (!core.getInput('cypress_api_url')) {
+                        cmd = ['cypress', 'run'];
+                    }
+                    else {
+                        useSorryCypress = true;
+                    }
                     envInput = core.getInput('env');
                     if (envInput) {
                         // TODO should env be quoted?
@@ -103462,11 +103471,20 @@ var runTests = function (options) {
                         cmd.push('--spec');
                         cmd.push(options.spec);
                     }
+                    return [4 /*yield*/, io.which('npx', true)];
+                case 1:
+                    npxPath = _a.sent();
+                    if (!useSorryCypress) return [3 /*break*/, 3];
                     date = new Date();
                     return [4 /*yield*/, exec.exec("npx cy2 run --parallel --record --key merged --ci-build-id \"".concat(date.toString(), " | ").concat(browserInput, " | ").concat(options.spec, "\""), cmd, opts)];
-                case 1:
+                case 2:
                     _a.sent();
-                    return [2 /*return*/];
+                    return [3 /*break*/, 5];
+                case 3: return [4 /*yield*/, exec.exec(quote_default()(npxPath), cmd, opts)];
+                case 4:
+                    _a.sent();
+                    _a.label = 5;
+                case 5: return [2 /*return*/];
             }
         });
     });
