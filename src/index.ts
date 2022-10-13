@@ -56,7 +56,7 @@ const runTests = async (options: any = {}) => {
   // await exec.exec(quote(npxPath), cmd, opts)
   // await exec.exec(`${quote(cypressApiUrl)} ${quote(npxPath)}`, cmd, opts)
   // await exec.exec(`npx cy2 run --spec cypress/e2e/payment-invoice/bitcoin.cy.ts --parallel --record --key merged --ci-build-id \`date +%s\``)
-  await exec.exec(`npx cy2 run ${cmd} --parallel --record --key merged --ci-build-id \`date +%s\``)
+  await exec.exec(`npx cy2 run ${cmd[1]} --parallel --record --key merged --ci-build-id \`date +%s\``)
 }
 
 const run = async () => {

@@ -103470,7 +103470,7 @@ var runTests = function (options) {
                     // await exec.exec(quote(npxPath), cmd, opts)
                     // await exec.exec(`${quote(cypressApiUrl)} ${quote(npxPath)}`, cmd, opts)
                     // await exec.exec(`npx cy2 run --spec cypress/e2e/payment-invoice/bitcoin.cy.ts --parallel --record --key merged --ci-build-id \`date +%s\``)
-                    return [4 /*yield*/, exec.exec("npx cy2 run ".concat(cmd, " --parallel --record --key merged --ci-build-id `date +%s`"))];
+                    return [4 /*yield*/, exec.exec("npx cy2 run ".concat(cmd[1], " --parallel --record --key merged --ci-build-id `date +%s`"))];
                 case 2:
                     // await exec.exec(quote(npxPath), cmd, opts)
                     // await exec.exec(`${quote(cypressApiUrl)} ${quote(npxPath)}`, cmd, opts)
