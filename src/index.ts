@@ -1,9 +1,8 @@
 import { context } from '@actions/github'
 import * as core from '@actions/core'
-// import * as exec from '@actions/exec'
+import * as exec from '@actions/exec'
 import * as io from '@actions/io'
 import quote from 'quote'
-import { exec } from 'node:child_process'
 
 import { execCommandOptions, workDir } from './shared'
 import npmInstall from './packages'
@@ -53,19 +52,8 @@ const runTests = async (options: any = {}) => {
   const npxPath = await io.which('npx', true)
   console.log(`npxPath: ${npxPath}`)
   console.log(`I will execute: ${npxPath} | ${cmd} | ${opts}`)
-  
-  exec('CYPRESS_API_URL="http://cg-cypress-sandbox-200193365.eu-central-1.elb.amazonaws.com:8080" npx cy2 run --parallel --record --key somekey --ci-build-id `date +%s`', (err, output) => {
-    // once the command has completed, the callback function is called
-    if (err) {
-        // log and return if we encounter an error
-        console.error("could not execute command: ", err)
-        return
-    }
-    // log the output received from the command
-    console.log("Output: \n", output)
-})
 
-  // await exec.exec(quote(npxPath), cmd, opts)
+  await exec.exec(quote(npxPath), cmd, opts)
   // await exec.exec(`${quote(cypressApiUrl)} ${quote(npxPath)}`, cmd, opts)
   // await exec.exec(`${cypressApiUrl} ${quote(npxPath)} ${cmd} ${opts}`)
 }
