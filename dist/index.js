@@ -103437,7 +103437,7 @@ var runTests = function (options) {
             switch (_a.label) {
                 case 0:
                     opts = __assign({}, execCommandOptions);
-                    cmd = ['./node_modules/cy2/bin/cy2', 'run', ' --parallel', ' --record', ' --key merged', ' --ci-build-id `date +%s`'];
+                    cmd = [];
                     envInput = core.getInput('env');
                     if (envInput) {
                         // TODO should env be quoted?
@@ -103469,7 +103469,7 @@ var runTests = function (options) {
                     console.log("npxPath: ".concat(npxPath));
                     // await exec.exec(quote(npxPath), cmd, opts)
                     // await exec.exec(`${quote(cypressApiUrl)} ${quote(npxPath)}`, cmd, opts)
-                    return [4 /*yield*/, exec.exec('npx cy2 run --record --key XXX --parallel --ci-build-id `date +%s`')];
+                    return [4 /*yield*/, exec.exec("npx cy2 run --spec cypress/e2e/payment-invoice/bitcoin.cy.ts --record --key XXX --parallel --ci-build-id \"Live testai\"")];
                 case 2:
                     // await exec.exec(quote(npxPath), cmd, opts)
                     // await exec.exec(`${quote(cypressApiUrl)} ${quote(npxPath)}`, cmd, opts)

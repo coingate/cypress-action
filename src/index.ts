@@ -16,8 +16,9 @@ const runTests = async (options: any = {}) => {
   }
 
   // const cypressApiUrl = 'CYPRESS_API_URL="http://cg-cypress-sandbox-200193365.eu-central-1.elb.amazonaws.com:8080"']
-  const cmd = ['./node_modules/cy2/bin/cy2', 'run', ' --parallel', ' --record', ' --key merged', ' --ci-build-id `date +%s`']
+  // const cmd = ['./node_modules/cy2/bin/cy2', 'run', ' --parallel', ' --record', ' --key merged', ' --ci-build-id `date +%s`']
   // const cmd = ['cypress', 'run']Original
+  const cmd = []
 
   const envInput = core.getInput('env')
   if (envInput) {
@@ -54,7 +55,7 @@ const runTests = async (options: any = {}) => {
 
   // await exec.exec(quote(npxPath), cmd, opts)
   // await exec.exec(`${quote(cypressApiUrl)} ${quote(npxPath)}`, cmd, opts)
-  await exec.exec('npx cy2 run --record --key XXX --parallel --ci-build-id `date +%s`')
+  await exec.exec(`npx cy2 run --spec cypress/e2e/payment-invoice/bitcoin.cy.ts --record --key XXX --parallel --ci-build-id "Live testai"`)
 }
 
 const run = async () => {
