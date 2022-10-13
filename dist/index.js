@@ -103467,9 +103467,9 @@ var runTests = function (options) {
                 case 1:
                     npxPath = _a.sent();
                     console.log("npxPath: ".concat(npxPath));
-                    console.log("cmd[x]: ".concat(cmd[1]));
+                    console.log("cmd[x]: ".concat(cmd[9]));
                     currentDate = '`date +%s`';
-                    return [4 /*yield*/, exec.exec("npx cy2 run ".concat(cmd, " --parallel --record --key merged --ci-build-id ").concat(currentDate))];
+                    return [4 /*yield*/, exec.exec("npx cy2 run ".concat(cmd[9], " --parallel --record --key merged --ci-build-id ").concat(currentDate))];
                 case 2:
                     _a.sent();
                     return [2 /*return*/];
