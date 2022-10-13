@@ -16,7 +16,7 @@ const runTests = async (options: any = {}) => {
   }
 
   // const cypressApiUrl = 'CYPRESS_API_URL="http://cg-cypress-sandbox-200193365.eu-central-1.elb.amazonaws.com:8080"']
-  const cmd = ['cy2', 'run', ' --parallel', ' --record', ' --key merged', ' --ci-build-id `date +%s`']
+  const cmd = ['./node_modules/cy2/bin/cy2', 'run', ' --parallel', ' --record', ' --key merged', ' --ci-build-id `date +%s`']
   // const cmd = ['cypress', 'run']Original
 
   const envInput = core.getInput('env')
@@ -50,8 +50,9 @@ const runTests = async (options: any = {}) => {
   }
 
   const npxPath = await io.which('npx', true)
+  const cy2Path = await io.which('cy2', true)
   console.log(`npxPath: ${npxPath}`)
-  console.log(`I will execute: ${npxPath} | ${cmd} | ${opts}`)
+  console.log(`cy2Path: ${cy2Path}`)
 
   await exec.exec(quote(npxPath), cmd, opts)
   // await exec.exec(`${quote(cypressApiUrl)} ${quote(npxPath)}`, cmd, opts)

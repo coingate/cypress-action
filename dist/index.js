@@ -103433,12 +103433,12 @@ var spec = core.getInput('spec');
 var runTests = function (options) {
     if (options === void 0) { options = {}; }
     return src_awaiter(void 0, void 0, void 0, function () {
-        var opts, cmd, envInput, configInput, browserInput, cypressApiUrl, npxPath;
+        var opts, cmd, envInput, configInput, browserInput, cypressApiUrl, npxPath, cy2Path;
         return src_generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
                     opts = __assign({}, execCommandOptions);
-                    cmd = ['cy2', 'run', ' --parallel', ' --record', ' --key merged', ' --ci-build-id `date +%s`'];
+                    cmd = ['./node_modules/cy2/bin/cy2', 'run', ' --parallel', ' --record', ' --key merged', ' --ci-build-id `date +%s`'];
                     envInput = core.getInput('env');
                     if (envInput) {
                         // TODO should env be quoted?
@@ -103467,13 +103467,16 @@ var runTests = function (options) {
                     return [4 /*yield*/, io.which('npx', true)];
                 case 1:
                     npxPath = _a.sent();
+                    return [4 /*yield*/, io.which('cy2', true)];
+                case 2:
+                    cy2Path = _a.sent();
                     console.log("npxPath: ".concat(npxPath));
-                    console.log("I will execute: ".concat(npxPath, " | ").concat(cmd, " | ").concat(opts));
+                    console.log("cy2Path: ".concat(cy2Path));
                     return [4 /*yield*/, exec.exec(quote_default()(npxPath), cmd, opts)
                         // await exec.exec(`${quote(cypressApiUrl)} ${quote(npxPath)}`, cmd, opts)
                         // await exec.exec(`${cypressApiUrl} ${quote(npxPath)} ${cmd} ${opts}`)
                     ];
-                case 2:
+                case 3:
                     _a.sent();
                     return [2 /*return*/];
             }
