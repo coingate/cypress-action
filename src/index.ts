@@ -37,11 +37,6 @@ const runTests = async (options: any = {}) => {
     cmd.push(browserInput)
   }
 
-  const cypressApiUrl = core.getInput('cypress_api_url')
-  if (cypressApiUrl) {
-    cmd.push(`CYPRESS_API_URL="${cypressApiUrl}"`)
-  }
-
   if (options.spec) {
     cmd.push('--spec')
     cmd.push(options.spec)
@@ -51,7 +46,12 @@ const runTests = async (options: any = {}) => {
 
   let date = new Date();
 
-  await exec.exec(`CYPRESS_API_URL="http://cg-cypress-sandbox-200193365.eu-central-1.elb.amazonaws.com:8080" ${quote(npxPath)} cy2 run --parallel --record --key merged --ci-build-id "${date.toLocaleString()} | ${browserInput} | ${options.spec.slice(35,options.spec.length)}"`, cmd, opts)
+  const useSorryCypress = core.getInput('sorry-cypress')
+  if (useSorryCypress) {
+    await exec.exec(`${quote(npxPath)} cy2 run --parallel --record --key merged --ci-build-id "${date.toLocaleString()} | ${browserInput} | ${options.spec.slice(35,options.spec.length)}"`, cmd, opts)    
+  } else {
+    await exec.exec(`${quote(npxPath)} cypress run`, cmd, opts)    
+  }
 }
 
 const run = async () => {

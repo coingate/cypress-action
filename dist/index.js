@@ -103433,7 +103433,7 @@ var spec = core.getInput('spec');
 var runTests = function (options) {
     if (options === void 0) { options = {}; }
     return src_awaiter(void 0, void 0, void 0, function () {
-        var opts, cmd, envInput, configInput, browserInput, cypressApiUrl, npxPath, date;
+        var opts, cmd, envInput, configInput, browserInput, npxPath, date, useSorryCypress;
         return src_generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
@@ -103456,10 +103456,6 @@ var runTests = function (options) {
                         cmd.push('--browser');
                         cmd.push(browserInput);
                     }
-                    cypressApiUrl = core.getInput('cypress_api_url');
-                    if (cypressApiUrl) {
-                        cmd.push("CYPRESS_API_URL=\"".concat(cypressApiUrl, "\""));
-                    }
                     if (options.spec) {
                         cmd.push('--spec');
                         cmd.push(options.spec);
@@ -103468,10 +103464,17 @@ var runTests = function (options) {
                 case 1:
                     npxPath = _a.sent();
                     date = new Date();
-                    return [4 /*yield*/, exec.exec("CYPRESS_API_URL=\"http://cg-cypress-sandbox-200193365.eu-central-1.elb.amazonaws.com:8080\" ".concat(quote_default()(npxPath), " cy2 run --parallel --record --key merged --ci-build-id \"").concat(date.toLocaleString(), " | ").concat(browserInput, " | ").concat(options.spec.slice(35, options.spec.length), "\""), cmd, opts)];
+                    useSorryCypress = core.getInput('sorry-cypress');
+                    if (!useSorryCypress) return [3 /*break*/, 3];
+                    return [4 /*yield*/, exec.exec("".concat(quote_default()(npxPath), " cy2 run --parallel --record --key merged --ci-build-id \"").concat(date.toLocaleString(), " | ").concat(browserInput, " | ").concat(options.spec.slice(35, options.spec.length), "\""), cmd, opts)];
                 case 2:
                     _a.sent();
-                    return [2 /*return*/];
+                    return [3 /*break*/, 5];
+                case 3: return [4 /*yield*/, exec.exec("".concat(quote_default()(npxPath), " cypress run"), cmd, opts)];
+                case 4:
+                    _a.sent();
+                    _a.label = 5;
+                case 5: return [2 /*return*/];
             }
         });
     });
