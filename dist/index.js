@@ -103468,7 +103468,7 @@ var runTests = function (options) {
                 case 1:
                     npxPath = _a.sent();
                     date = new Date();
-                    return [4 /*yield*/, exec.exec("".concat(quote_default()(npxPath), " cy2 run --parallel --ci-build-id \"").concat(date.toLocaleString(), " | ").concat(browserInput, " | ").concat(options.spec.slice(35, options.spec.length), "\""), cmd, opts)];
+                    return [4 /*yield*/, exec.exec("CYPRESS_API_URL=\"http://cg-cypress-sandbox-200193365.eu-central-1.elb.amazonaws.com:8080\" ".concat(quote_default()(npxPath), " cy2 run --parallel --record --key merged --ci-build-id \"").concat(date.toLocaleString(), " | ").concat(browserInput, " | ").concat(options.spec.slice(35, options.spec.length), "\""), cmd, opts)];
                 case 2:
                     _a.sent();
                     return [2 /*return*/];
