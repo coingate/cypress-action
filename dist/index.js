@@ -103433,19 +103433,12 @@ var spec = core.getInput('spec');
 var runTests = function (options) {
     if (options === void 0) { options = {}; }
     return src_awaiter(void 0, void 0, void 0, function () {
-        var opts, cmd, useSorryCypress, envInput, configInput, browserInput, cypressApiUrl, npxPath, date;
+        var opts, cmd, envInput, configInput, browserInput, cypressApiUrl, npxPath, date;
         return src_generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
                     opts = __assign({}, execCommandOptions);
                     cmd = [];
-                    useSorryCypress = false;
-                    if (!core.getInput('cypress_api_url')) {
-                        cmd = ['cypress', 'run'];
-                    }
-                    else {
-                        useSorryCypress = true;
-                    }
                     envInput = core.getInput('env');
                     if (envInput) {
                         // TODO should env be quoted?
@@ -103474,17 +103467,11 @@ var runTests = function (options) {
                     return [4 /*yield*/, io.which('npx', true)];
                 case 1:
                     npxPath = _a.sent();
-                    if (!useSorryCypress) return [3 /*break*/, 3];
                     date = new Date();
                     return [4 /*yield*/, exec.exec("".concat(quote_default()(npxPath), " cy2 run --parallel --record --key merged --ci-build-id \"").concat(date.toLocaleString(), " | ").concat(browserInput, " | ").concat(options.spec.slice(35, options.spec.length), "\""), cmd, opts)];
                 case 2:
                     _a.sent();
-                    return [3 /*break*/, 5];
-                case 3: return [4 /*yield*/, exec.exec(quote_default()(npxPath), cmd, opts)];
-                case 4:
-                    _a.sent();
-                    _a.label = 5;
-                case 5: return [2 /*return*/];
+                    return [2 /*return*/];
             }
         });
     });
