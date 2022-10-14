@@ -14,7 +14,8 @@ const runTests = async (options: any = {}) => {
   const opts = {
     ...execCommandOptions,
   }
-  const cmd = ['cypress', 'run']
+
+  let cmd = []
 
   const envInput = core.getInput('env')
   if (envInput) {
@@ -43,7 +44,14 @@ const runTests = async (options: any = {}) => {
 
   const npxPath = await io.which('npx', true)
 
-  await exec.exec(quote(npxPath), cmd, opts)
+  let date = new Date();
+
+  const useSorryCypress = core.getInput('sorry-cypress')
+  if (useSorryCypress) {
+    await exec.exec(`${quote(npxPath)} cy2 run --parallel --record --key merged --ci-build-id "${date.toLocaleString()} | ${browserInput} | ${options.spec.slice(35,options.spec.length)}"`, cmd, opts)    
+  } else {
+    await exec.exec(`${quote(npxPath)} cypress run`, cmd, opts)    
+  }
 }
 
 const run = async () => {
