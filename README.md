@@ -19,7 +19,15 @@ jobs:
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           gcloud-auth: ${{ secrets.GCLOUD_AUTH }}
-          bucket-name: "tests-data-eoiurg"
+          bucket-name: 'cg-live-tests'
           slack-token: ${{ secrets.SLACK_TOKEN }}
-          slack-channel: CBH555555
+          slack-channel: CBH5UR16Y
+          slack-mention: '@qa'
+          env: CG_AUTH_TOKEN=${{ secrets.CYPRESS_CG_AUTH_TOKEN }}
+          config: baseUrl=https://coingate.com
+          spec: ${{ steps.next-test.outputs.path }}
+          browser: chrome
+          sorry-cypress: true
+        env: 
+          CYPRESS_API_URL: "http://cg-cypress-sandbox-200193365.eu-central-1.elb.amazonaws.com:8080"
 ```
