@@ -38,5 +38,5 @@ inputs:
     description: 'Sorry-cypress api url'
     required: false
 runs:
-  using: 'node12'
+  using: 'node14'
   main: 'dist/index.js'
