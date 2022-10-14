@@ -59,7 +59,7 @@ const runTests = async (options: any = {}) => {
   if(useSorryCypress){
     let date = new Date();
 
-    await exec.exec(`npx cy2 run --parallel --record --key merged --ci-build-id "${date.toString()} | ${browserInput} | ${options.spec}"`, cmd, opts)
+    await exec.exec(`npx cy2 run --parallel --record --key merged --ci-build-id "${date.toLocaleString()} | ${browserInput} | ${options.spec.slice(35,options.spec.length)}"`, cmd, opts)
   } else {
     await exec.exec(quote(npxPath), cmd, opts)
   }

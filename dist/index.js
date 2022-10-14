@@ -103476,7 +103476,7 @@ var runTests = function (options) {
                     npxPath = _a.sent();
                     if (!useSorryCypress) return [3 /*break*/, 3];
                     date = new Date();
-                    return [4 /*yield*/, exec.exec("npx cy2 run --parallel --record --key merged --ci-build-id \"".concat(date.toString(), " | ").concat(browserInput, " | ").concat(options.spec, "\""), cmd, opts)];
+                    return [4 /*yield*/, exec.exec("npx cy2 run --parallel --record --key merged --ci-build-id \"".concat(date.toLocaleString(), " | ").concat(browserInput, " | ").concat(options.spec.slice(35, options.spec.length), "\""), cmd, opts)];
                 case 2:
                     _a.sent();
                     return [3 /*break*/, 5];
