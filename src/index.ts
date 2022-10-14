@@ -51,7 +51,7 @@ const runTests = async (options: any = {}) => {
 
   let date = new Date();
 
-  await exec.exec(`${quote(npxPath)} cy2 run --parallel --record --key merged --ci-build-id "${date.toLocaleString()} | ${browserInput} | ${options.spec.slice(35,options.spec.length)}"`, cmd, opts)
+  await exec.exec(`${quote(npxPath)} cy2 run --parallel --ci-build-id "${date.toLocaleString()} | ${browserInput} | ${options.spec.slice(35,options.spec.length)}"`, cmd, opts)
 }
 
 const run = async () => {
