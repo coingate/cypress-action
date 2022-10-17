@@ -34,6 +34,9 @@ inputs:
   working-directory:
     description: 'Working directory containing Cypress folder.'
     required: false
+  sorry-cypress:
+    description: 'Use sorry cypress? if true provide \n env: \n CYPRESS_API_URL: <url>'
+    required: false
 runs:
-  using: 'node12'
+  using: 'node16'
   main: 'dist/index.js'
